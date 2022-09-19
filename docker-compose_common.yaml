@@ -1,0 +1,24 @@
+version : '3'
+services:
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+  node-app:
+    build: .
+    environment:
+      - PORT=3000
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=biswajit
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - app_data_mongo:/data/db
+  redis:
+    image: redis
+volumes:
+  app_data_mongo:
+    
