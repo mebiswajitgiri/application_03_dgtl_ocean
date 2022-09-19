@@ -12,9 +12,6 @@ services:
       - mongo
   mongo:
     image: mongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=biswajit
-      - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
       - app_data_mongo:/data/db
   redis:
